@@ -29,6 +29,17 @@
         <module>order-service</module>
     </modules>
 
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <url>http://3.110.177.155:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+             <url>http://3.110.177.155:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+         
     <build>
         <plugins>
             <plugin>
