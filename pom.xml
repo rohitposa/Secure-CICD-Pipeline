@@ -24,6 +24,11 @@
         <jacoco.version>0.8.12</jacoco.version>
     </properties>
 
+  <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-starter-actuator</artifactId>
+  </dependency>
+  
     <modules>
         <module>product-service</module>
         <module>order-service</module>
