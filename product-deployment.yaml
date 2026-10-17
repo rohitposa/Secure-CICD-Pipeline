@@ -17,6 +17,7 @@ spec:
       labels:
         app: product-service
     spec:
+      automountServiceAccountToken: false
       containers:
       - name: product-service
         image: IMAGE_PLACEHOLDER
@@ -24,9 +25,13 @@ spec:
         - containerPort: 8081
         resources:
           requests:
+            cpu: "250m"
             memory: "256Mi"
+            ephemeral-storage: "256Mi"
           limits:
+            cpu: "500m"
             memory: "768Mi"
+            ephemeral-storage: "512Mi"
         readinessProbe:
           httpGet:
             path: /actuator/health
