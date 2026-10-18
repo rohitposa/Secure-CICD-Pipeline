@@ -86,8 +86,8 @@ pipeline {
             docker compose pull
             docker compose up -d
             for i in $(seq 1 24); do
-              curl -sf localhost:8081/actuator/wrong | grep -q UP && \
-              curl -sf localhost:8082/actuator/wrong | grep -q UP && \
+              curl -sf localhost:8081/actuator/health | grep -q UP && \
+              curl -sf localhost:8082/actuator/health | grep -q UP && \
               echo ${IMAGE_TAG} > /var/lib/jenkins/last_good_tag && exit 0
               sleep 5
             done
