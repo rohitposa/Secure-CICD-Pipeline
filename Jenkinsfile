@@ -79,7 +79,7 @@ pipeline {
                     }
                 }
             }
-         stage('deploy with docker') {
+         stage('deploy with docker with rollback') {
         steps {
             sh '''
             PREV=$(cat /var/lib/jenkins/last_good_tag 2>/dev/null || true)
