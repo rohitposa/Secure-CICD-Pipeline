@@ -1,4 +1,4 @@
-# DevSecOps CI/CD Pipeline with Automated Rollback
+# Secure CI/CD Pipeline with Automated Rollback
 
 A Jenkins CI/CD pipeline for a 2-service Spring Boot app (product-service and
 order-service). Every commit is built, tested, analysed by SonarQube, scanned
