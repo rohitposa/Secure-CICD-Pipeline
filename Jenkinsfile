@@ -18,9 +18,14 @@ pipeline {
                     git branch: 'main', credentialsId: 'git_credential', url: 'https://github.com/rohitposa/shop-microservices.git'
                 }
             }
-            stage('build') {
+            stage('compile'){
                 steps {
-                    sh "mvn clean verify"    
+                    sh "mvn compile"
+                }
+            }
+            stage('test'){
+                steps {
+                    sh "mvn test"
                 }
             }
             stage('scan filesystem') {
@@ -36,6 +41,11 @@ pipeline {
                               -Dsonar.qualitygate.wait=true
                               '''
                     }   
+                }
+            }
+            stage('build') {
+                steps {
+                    sh "mvn package"    
                 }
             }
             stage('nexus artifact'){
