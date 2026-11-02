@@ -102,17 +102,6 @@ Failed build log -> last 150 lines -> mask secrets -> Gemini API -> ai-report-lo
 ![AI Trivy summary](screenshots/07-ai-trivy-report.png)
 ![AI failure analysis](screenshots/07-ai-failure-console.png)
 
-## Vulnerability remediation
-
-The AI summary and the Trivy report showed HIGH/CRITICAL findings in Tomcat,
-Jackson and Micrometer. These versions are managed by the Spring Boot BOM, so
-instead of pinning individual libraries I upgraded the Spring Boot parent, then
-rebuilt, ran the tests and re-scanned.
-
-| | Before | After |
-|---|---|---|
-| `spring-boot-starter-parent` | 3.3.5 (out of OSS support since June 2025) | 3.5.16 |
-| Trivy HIGH/CRITICAL lines | 44 | XX |
 
 ## Screenshots
 
