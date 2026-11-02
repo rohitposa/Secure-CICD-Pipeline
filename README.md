@@ -99,9 +99,8 @@ Failed build log -> last 150 lines -> mask secrets -> Gemini API -> ai-report-lo
 - **Security:** the API key is a Jenkins secret text credential. Keys, tokens, passwords and bearer values are masked with regex before anything is sent, and only a dummy project is used.
 - **Human review:** the output is a suggestion, not an action. One AI suggestion paired Spring Framework 7 with Spring Boot 3.x, which is incompatible, so every fix was checked against the Trivy "Fixed Version" column before it was applied.
 
-![AI stage in the pipeline](screenshots/07-ai-stage-view.png)
 ![AI Trivy summary](screenshots/07-ai-trivy-report.png)
-![AI failure analysis](screenshots/08-ai-failure-report.png)
+![AI failure analysis](screenshots/07-ai-failure-console.png)
 
 ## Vulnerability remediation
 
