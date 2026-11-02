@@ -6,3 +6,6 @@ target/
 .classpath
 .project
 .DS_Store
+ai-report-*.md
+*-report.txt
+sample-fail.log
