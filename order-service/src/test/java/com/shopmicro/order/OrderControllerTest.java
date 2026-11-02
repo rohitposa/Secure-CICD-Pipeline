@@ -45,3 +45,4 @@ class OrderControllerTest {
     void unknownProductReturns404() throws Exception {
         when(productClient.findById(99L)).thenReturn(Optional.empty());
     }
+}
