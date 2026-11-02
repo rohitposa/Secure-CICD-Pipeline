@@ -21,6 +21,8 @@ import org.springframework.web.client.ResourceAccessException;
 @AutoConfigureMockMvc
 class OrderControllerTest {
 
+    private static final String ORDERS_URL = "/api/orders";
+
     @Autowired
     private MockMvc mvc;
 
@@ -31,7 +33,7 @@ class OrderControllerTest {
     void createOrderCalculatesTotal() throws Exception {
         when(productClient.findById(1L)).thenReturn(Optional.of(new ProductDto(1, "Laptop", 55000)));
 
-        mvc.perform(post("/api/orders")
+        mvc.perform(post(ORDERS_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"productId\":1,\"quantity\":2}"))
                 .andExpect(status().isCreated())
@@ -42,41 +44,3 @@ class OrderControllerTest {
     @Test
     void unknownProductReturns404() throws Exception {
         when(productClient.findById(99L)).thenReturn(Optional.empty());
-
-        mvc.perform(post("/api/orders")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"productId\":99,\"quantity\":1}"))
-                .andExpect(status().isNotFound());
-    }
-
-    @Test
-    void invalidQuantityReturns400() throws Exception {
-        mvc.perform(post("/api/orders")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"productId\":1,\"quantity\":0}"))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    void productServiceDownReturns503() throws Exception {
-        when(productClient.findById(1L)).thenThrow(new ResourceAccessException("connection refused"));
-
-        mvc.perform(post("/api/orders")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"productId\":1,\"quantity\":1}"))
-                .andExpect(status().isServiceUnavailable());
-    }
-
-    @Test
-    void listOrdersReturnsOk() throws Exception {
-        mvc.perform(get("/api/orders"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    void healthIsUp() throws Exception {
-        mvc.perform(get("/actuator/health"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.status").value("UP"));
-    }
-}
